@@ -1,0 +1,81 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  height: 100%;
+  overflow: hidden;
+  /* Evita barras de rolagem desnecessárias */
+}
+
+#app {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+.text-updater-node {
+  height: 50px;
+  border: 1px solid #eee;
+  padding: 5px;
+  border-radius: 5px;
+  background: white;
+}
+
+.text-updater-node label {
+  display: block;
+  color: #777;
+  font-size: 12px;
+}
+
+
+.sidebar {
+  background-color: #2c3e50;
+  /* Cor mais profissional */
+  width: 250px;
+  /* Largura aumentada */
+  height: 100vh;
+  color: white;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+.sidebar-header {
+  padding: 20px;
+  background-color: #34495e;
+  text-align: center;
+  border-bottom: 1px solid #3d5166;
+}
+
+.sidebar-content {
+  padding: 15px;
+  flex-grow: 1;
+  overflow-y: auto;
+  /* Rolagem se o conteúdo for muito longo */
+}
+
+.sidebar-footer {
+  padding: 15px;
+  border-top: 1px solid #3d5166;
+  text-align: center;
+}
+
+
+/* Botões e controles */
+.btn-add {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 10px 0;
+  transition: background-color 0.2s;
+}
+
+.btn-add:hover {
+  background-color: #2980b9;
+}
