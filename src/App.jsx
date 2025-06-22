@@ -13,6 +13,7 @@ import TextUpdaterNode from './components/TextUpdaterNode';
 import { defaultNodes } from './nodes/defaultNodes'
 import { defaultEdges } from './nodes/defaultEdges'
 import SideBar from './components/SideBar';
+import DevTools from './components/Devtools';
 
 
 const nodeTypes = {
@@ -38,6 +39,33 @@ function Flow() {
     [],
   );
 
+  // const onNodesDelete = useCallback(
+  //   (deleted) => {
+  //     setEdges(
+  //       deleted.reduce((acc, node) => {
+  //         const incomers = getIncomers(node, nodes, edges);
+  //         const outgoers = getOutgoers(node, nodes, edges);
+  //         const connectedEdges = getConnectedEdges([node], edges);
+
+  //         const remainingEdges = acc.filter(
+  //           (edge) => !connectedEdges.includes(edge),
+  //         );
+
+  //         const createdEdges = incomers.flatMap(({ id: source }) =>
+  //           outgoers.map(({ id: target }) => ({
+  //             id: `${source}->${target}`,
+  //             source,
+  //             target,
+  //           })),
+  //         );
+
+  //         return [...remainingEdges, ...createdEdges];
+  //       }, edges),
+  //     );
+  //   },
+  //   [nodes, edges],
+  // );
+
 
 
   const edgeOptions = {
@@ -57,7 +85,10 @@ function Flow() {
         onConnect={onConnect}
         nodeTypes={nodeTypes}
         defaultEdgeOptions={edgeOptions}
+
+
       >
+        <DevTools />
         <Background />
         <Controls />
       </ReactFlow>
