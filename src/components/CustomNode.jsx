@@ -1,43 +1,44 @@
 import { Handle } from "@xyflow/react";
 import { useCallback, useState, useRef, useEffect } from "react";
 
-export default function CustomNode(props) {
-    const [label, setLabel] = useState('Label');
-    const [editing, setEditing] = useState(false);
-    const inputRef = useRef(null);
+export default function CustomNode({ id, data, selected }) {
+    const [label, setLabel] = useState(data.label || 'Novo Nó');
 
-    const onChange = useCallback((evt) => {
-        setLabel(evt.target.value || 'Label');
-    }, []);
-
-    const handleEdit = useCallback(() => {
-        setEditing(prev => !prev);
-    }, []);
-
-    const handleKeyDown = useCallback((evt) => {
-        if (evt.key === 'Enter') {
-            handleEdit();
-        }
-    }, [handleEdit]);
-
-    // Auto-focus quando entrar no modo de edição
+    // Atualiza o label quando os dados externos mudam
     useEffect(() => {
-        if (editing && inputRef.current) {
-            inputRef.current.focus();
+        if (data.label && data.label !== label) {
+            setLabel(data.label);
         }
-    }, [editing]);
+    }, [data.label]);
+
 
     return (
-        <div className="" style={{ minWidth: '10em', textAlign: 'center' }}>
-            <div>
-                {!editing && (
-                    <label onClick={handleEdit} htmlFor="text" style={{ cursor: 'pointer' }}>
-                        {label}
-                    </label>
-                )}
-                <Handle type="target" position="top" />
-                <Handle type="source" position="bottom" />
+        <div
+            className={`custom-node ${selected ? 'selected' : ''}`}
+            style={{
+                minWidth: '100px',
+                textAlign: 'center',
+            }}
+        >
+            <div className="node-content">
+                <div
+                    className="node-label"
+                    title="Clique para editar"
+                >
+                    {label}
+                </div>
+                <div className='drag-handle__label'>
+                    <span className="drag-handle__custom" >
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 10H18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                            <path d="M6 14H18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                        </svg>
+                    </span>
+                </div>
             </div>
+
+            <Handle type="target" position="top" className="node-handle" />
+            <Handle type="source" position="bottom" className="node-handle" />
         </div>
     );
 }

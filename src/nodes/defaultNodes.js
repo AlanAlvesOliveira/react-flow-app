@@ -7,10 +7,20 @@ export const defaultNodes = [
     },
     {
         id: '2',
-        data: { label: 'World' },
+        data: { label: 'textUpdater' },
         position: { x: 100, y: 100 },
         type: 'textUpdater'
 
     },
+    {
+        id: '3',
+        data: { label: 'CustomNode' },
+        position: { x: -100, y: 100 },
+        dragHandle: '.drag-handle__custom',
+        type: 'customNode'
+
+    },
+
+
 
 ];

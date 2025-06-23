@@ -1,8 +1,8 @@
 import { Handle } from "@xyflow/react";
 import { useCallback, useState, useRef, useEffect } from "react";
 
-export default function TextUpdaterNode(props) {
-    const [label, setLabel] = useState('Label');
+export default function TextUpdaterNode({ data }) {
+    const [label, setLabel] = useState(data.label || 'Label');
     const [editing, setEditing] = useState(false);
     const inputRef = useRef(null);
 
@@ -18,6 +18,12 @@ export default function TextUpdaterNode(props) {
         if (evt.key === 'Enter') {
             handleEdit();
         }
+    }, [handleEdit]);
+
+    const handleNodeClick = useCallback((e) => {
+        // Impede a propagação para evitar conflitos com drag
+        e.stopPropagation();
+        handleEdit();
     }, [handleEdit]);
 
     // Auto-focus quando entrar no modo de edição
@@ -44,6 +50,7 @@ export default function TextUpdaterNode(props) {
                         onBlur={handleEdit}
                         onKeyDown={handleKeyDown}
                         className="nodrag"
+                        onClick={(e) => handleNodeClick(e)}
                     />
                 )}
                 <Handle type="target" position="top" />

@@ -1,6 +1,7 @@
 import { useReactFlow } from "@xyflow/react";
 import { useCallback } from "react";
 import { useDnD } from "./DnDContext";
+import { createNewNode } from "../utils/nodeUtils";
 
 export default function SideBar() {
     const reactFlowInstance = useReactFlow();
@@ -17,18 +18,7 @@ export default function SideBar() {
 
     const onClick = useCallback((type) => {
 
-        const id = `${Math.random()}`;
-        const newNode = {
-            id,
-            position: {
-                x: Math.random() * 100,
-                y: Math.random() * 100,
-            },
-            type: type,
-            data: {
-                label: `${type} node`
-            },
-        };
+        const newNode = createNewNode(type);
         reactFlowInstance.addNodes(newNode);
     }, [reactFlowInstance]);
 
@@ -59,6 +49,15 @@ export default function SideBar() {
                 >
                     Text Node
                 </button>
+
+                <button
+                    className="btn"
+                    onClick={() => onClick('customNode')}
+                    onDragStart={(e) => onDragStart(e, 'customNode')}
+                    draggable
+                >
+                    Custom Node
+                </button>
                 <button
                     className="btn"
                     onClick={() => onClick('default')}
@@ -70,7 +69,7 @@ export default function SideBar() {
 
                 <button
                     className="btn"
-                    onClick={() => onClick('default')}
+                    onClick={() => onClick('output')}
                     onDragStart={(e) => onDragStart(e, 'output')}
                     draggable
                 >
