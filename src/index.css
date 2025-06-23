@@ -64,6 +64,18 @@ body {
 }
 
 
+.btn {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 10px 0;
+  transition: background-color 0.2s;
+  width: 100%;
+}
+
 /* Botões e controles */
 .btn-add {
   background-color: #3498db;
