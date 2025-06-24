@@ -235,6 +235,9 @@ body {
 
 /* custom node */
 .custom-node {
+  max-width: 172px;
+  min-width: 172px;
+  text-align: center;
   background: white;
   border: 1px solid rgb(0, 0, 0, .2);
   border-radius: 8px;

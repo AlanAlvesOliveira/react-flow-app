@@ -10,7 +10,7 @@ export default function SideBar() {
     const [_, setType] = useDnD();
 
     const onDragStart = (event, nodeType) => {
-        console.log(nodeType)
+
         setType(nodeType);
         event.dataTransfer.setData('text/plain', nodeType);
         event.dataTransfer.effectAllowed = 'move';
@@ -22,6 +22,10 @@ export default function SideBar() {
         reactFlowInstance.addNodes(newNode);
     }, [reactFlowInstance]);
 
+    const handleEnviar = () => {
+        console.log(reactFlowInstance.getNodes());
+        console.log(reactFlowInstance.getEdges());
+    }
 
 
     return (
@@ -77,6 +81,12 @@ export default function SideBar() {
                 </button>
             </div>
             <div className="sidebar-footer">
+                <button
+                    className="btn"
+                    onClick={() => handleEnviar()}
+                >
+                    Enviar dados
+                </button>
                 <small>v1.0.0</small>
             </div>
 
