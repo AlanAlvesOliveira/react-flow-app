@@ -11,10 +11,6 @@ export const createNewNode = (type, position) => {
         type,
         data: {
             label: `${type} node`
-        },
-        meta: {
-            createdAt: new Date().toISOString(),
-            createdBy: 'user'
         }
     };
 

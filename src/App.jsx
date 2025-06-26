@@ -13,8 +13,6 @@ import {
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import TextUpdaterNode from './components/TextUpdaterNode';
-import { defaultNodes } from './nodes/defaultNodes'
-import { defaultEdges } from './nodes/defaultEdges'
 import SideBar from './components/SideBar';
 import DevTools from './components/Devtools';
 import { useDnD } from './components/DnDContext';
@@ -23,50 +21,12 @@ import CustomNode from './components/CustomNode';
 import { createNewNode } from './utils/nodeUtils';
 import dagre from '@dagrejs/dagre';
 
-const dagreGraph = new dagre.graphlib.Graph().setDefaultEdgeLabel(() => ({}));
+// import { defaultNodes } from './nodes/defaultNodes'
+// import { defaultEdges } from './nodes/defaultEdges'
+import { dataFlow } from './nodes/dataFlow';
+import { getLayoutedElements } from './utils/transformFlowVerticalHorizontal';
+const { defaultNodes, defaultEdges } = dataFlow;
 
-
-const nodeWidth = 172;
-const nodeHeight = 36;
-
-const getLayoutedElements = (nodes, edges, direction = 'TB') => {
-  const isHorizontal = direction === 'LR';
-  dagreGraph.setGraph({ rankdir: direction, ranksep: 200 });
-
-  nodes.forEach((node) => {
-    dagreGraph.setNode(node.id, { width: nodeWidth, height: nodeHeight });
-  });
-
-  edges.forEach((edge) => {
-    dagreGraph.setEdge(edge.source, edge.target);
-  });
-
-  dagre.layout(dagreGraph);
-
-  const newNodes = nodes.map((node) => {
-    const nodeWithPosition = dagreGraph.node(node.id);
-    const newNode = {
-      ...node,
-      targetPosition: isHorizontal ? 'left' : 'top',
-      sourcePosition: isHorizontal ? 'right' : 'bottom',
-      // We are shifting the dagre node position (anchor=center center) to the top left
-      // so it matches the React Flow node anchor point (top left).
-      position: {
-        x: nodeWithPosition.x - nodeWidth / 2,
-        y: nodeWithPosition.y - nodeHeight / 2,
-      },
-    };
-
-    return newNode;
-  });
-
-  return { nodes: newNodes, edges };
-};
-
-const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
-  defaultNodes,
-  defaultEdges,
-);
 
 const SUPPORTED_EDGE_TYPES = ['default', 'smoothstep', 'straight'];
 
@@ -157,9 +117,7 @@ function Flow() {
     setSelectedNode(null)
   }
 
-  const edgeOptions = {
-    animated: true
-  };
+
 
   const onLayout = useCallback(
     (direction) => {
@@ -186,7 +144,7 @@ function Flow() {
     setEdges(prevEdges =>
       prevEdges.map(edge => ({
         ...edge,
-        type: newType, // Usa o novo tipo aqui
+        type: newType,
         markerEnd: {
           type: MarkerType.ArrowClosed,
           width: 30,
@@ -194,7 +152,7 @@ function Flow() {
         },
       }))
     );
-  }, [edgeType]); // Adicione edgeType como dependência
+  }, [edgeType]);
 
 
   return (
@@ -209,7 +167,7 @@ function Flow() {
         fitView
         onConnect={onConnect}
         nodeTypes={nodeTypes}
-        defaultEdgeOptions={edgeOptions}
+        defaultEdgeOptions={{ animated: true }}
         onNodeClick={onNodeClick}
         onDrop={onDrop}
         onDragOver={onDragOver}

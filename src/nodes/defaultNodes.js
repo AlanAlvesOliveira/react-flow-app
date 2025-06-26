@@ -9,10 +9,6 @@ export const defaultNodes = [
         "data": {
             "label": "customNode node"
         },
-        "meta": {
-            "createdAt": "2025-06-23T19:44:11.602Z",
-            "createdBy": "user"
-        },
         "dragHandle": ".drag-handle__custom",
         "measured": {
             "width": 199,
@@ -32,10 +28,6 @@ export const defaultNodes = [
         "type": "customNode",
         "data": {
             "label": "customNode node"
-        },
-        "meta": {
-            "createdAt": "2025-06-23T19:44:11.882Z",
-            "createdBy": "user"
         },
         "dragHandle": ".drag-handle__custom",
         "measured": {
@@ -57,10 +49,6 @@ export const defaultNodes = [
         "data": {
             "label": "customNode node"
         },
-        "meta": {
-            "createdAt": "2025-06-23T19:44:12.218Z",
-            "createdBy": "user"
-        },
         "dragHandle": ".drag-handle__custom",
         "measured": {
             "width": 199,
@@ -80,10 +68,6 @@ export const defaultNodes = [
         "type": "customNode",
         "data": {
             "label": "Start node"
-        },
-        "meta": {
-            "createdAt": "2025-06-23T19:44:25.385Z",
-            "createdBy": "user"
         },
         "dragHandle": ".drag-handle__custom",
         "measured": {
@@ -105,10 +89,6 @@ export const defaultNodes = [
         "data": {
             "label": "customNode node"
         },
-        "meta": {
-            "createdAt": "2025-06-23T19:44:33.538Z",
-            "createdBy": "user"
-        },
         "dragHandle": ".drag-handle__custom",
         "measured": {
             "width": 199,
@@ -128,10 +108,6 @@ export const defaultNodes = [
         "type": "customNode",
         "data": {
             "label": "customNode node"
-        },
-        "meta": {
-            "createdAt": "2025-06-23T19:44:33.794Z",
-            "createdBy": "user"
         },
         "dragHandle": ".drag-handle__custom",
         "measured": {
@@ -153,10 +129,6 @@ export const defaultNodes = [
         "data": {
             "label": "customNode node"
         },
-        "meta": {
-            "createdAt": "2025-06-23T19:44:34.314Z",
-            "createdBy": "user"
-        },
         "dragHandle": ".drag-handle__custom",
         "measured": {
             "width": 199,
@@ -177,10 +149,6 @@ export const defaultNodes = [
         "data": {
             "label": "customNode node"
         },
-        "meta": {
-            "createdAt": "2025-06-23T22:58:21.806Z",
-            "createdBy": "user"
-        },
         "dragHandle": ".drag-handle__custom",
         "measured": {
             "width": 199,
@@ -200,10 +168,6 @@ export const defaultNodes = [
         "type": "customNode",
         "data": {
             "label": "End node"
-        },
-        "meta": {
-            "createdAt": "2025-06-24T14:50:26.799Z",
-            "createdBy": "user"
         },
         "dragHandle": ".drag-handle__custom",
         "measured": {
