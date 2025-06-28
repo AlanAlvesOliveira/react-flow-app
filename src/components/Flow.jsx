@@ -120,7 +120,7 @@ export default function Flow() {
         );
 
         applyLayout(layoutedNodes, layoutedEdges);
-    }, [nodes, edges, setDirection, applyLayout]);
+    }, [nodes, edges, direction, setDirection, applyLayout]);
 
 
     const changeEdge = useCallback(() => {
@@ -140,6 +140,9 @@ export default function Flow() {
             },
         })));
     }, [edgeType, edges, setEdges, setEdgeType]);
+
+
+    const directionButton = direction === 'TB' ? { value: 'LR', label: 'Vertical' } : { value: 'TB', label: 'Horizontal' };
 
     return (
         <div id='app'>
@@ -164,14 +167,12 @@ export default function Flow() {
                 <MiniMap zoomable pannable />
                 <Panel position="top-right">
                     <div style={{ display: 'flex', gap: '1em' }}>
-                        <button className="btn" onClick={() => changeEdge()}>
-                            Change Edge
+                        <button type='button' className="btn btn-change" onClick={() => changeEdge()}>
+                            Change Edge ({edgeType})
                         </button>
-                        <button className="btn" onClick={() => onLayout('TB')}>
-                            vertical layout
-                        </button>
-                        <button className="btn" onClick={() => onLayout('LR')}>
-                            horizontal layout
+
+                        <button type='button' className="btn btn-change" onClick={() => onLayout(directionButton.value)}>
+                            Change Layout ({directionButton.label})
                         </button>
                     </div>
                 </Panel>

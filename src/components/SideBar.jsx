@@ -8,7 +8,8 @@ export default function SideBar() {
 
 
     const reactFlowInstance = useReactFlow();
-    const { direction, setTypeComponent } = useContext(FlowContext);
+    const context = useContext(FlowContext);
+    const { direction, setTypeComponent } = context;
 
     const onDragStart = (event, nodeType) => {
 
@@ -23,16 +24,15 @@ export default function SideBar() {
     };
 
     const onClick = useCallback((type) => {
-
         const newNode = createNewNode(type, null, direction);
         reactFlowInstance.addNodes(newNode);
-    }, [reactFlowInstance]);
+    }, [reactFlowInstance, direction]);
 
     const handleEnviar = () => {
-        console.log(reactFlowInstance.getNodes());
-        console.log(reactFlowInstance.getEdges());
+        console.log(context);
     }
 
+    const nodeTypes = ['input', 'textUpdater', 'customNode', 'default', 'output'];
 
     return (
 
@@ -41,50 +41,18 @@ export default function SideBar() {
                 <h3>Flow Controls</h3>
             </div>
             <div className="sidebar-content">
-
-
-                <button
-                    className="btn"
-                    onClick={() => onClick('input')}
-                    onDragStart={(e) => onDragStart(e, 'input')}
-                    draggable
-                >
-                    Input Node
-                </button>
-                <button
-                    className="btn"
-                    onClick={() => onClick('textUpdater')}
-                    onDragStart={(e) => onDragStart(e, 'textUpdater')}
-                    draggable
-                >
-                    Text Node
-                </button>
-
-                <button
-                    className="btn"
-                    onClick={() => onClick('customNode')}
-                    onDragStart={(e) => onDragStart(e, 'customNode')}
-                    draggable
-                >
-                    Custom Node
-                </button>
-                <button
-                    className="btn"
-                    onClick={() => onClick('default')}
-                    onDragStart={(e) => onDragStart(e, 'default')}
-                    draggable
-                >
-                    Default Node
-                </button>
-
-                <button
-                    className="btn"
-                    onClick={() => onClick('output')}
-                    onDragStart={(e) => onDragStart(e, 'output')}
-                    draggable
-                >
-                    Output Node
-                </button>
+                {nodeTypes.map((type) => (
+                    <button
+                        key={type}
+                        className="btn"
+                        onClick={() => onClick(type)}
+                        onDragStart={(e) => onDragStart(e, type)}
+                        onDragEnd={onDragEnd}
+                        draggable
+                    >
+                        {type.charAt(0).toUpperCase() + type.slice(1)} Node
+                    </button>
+                ))}
             </div>
             <div className="sidebar-footer">
                 <button

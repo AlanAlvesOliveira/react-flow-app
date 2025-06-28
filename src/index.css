@@ -90,6 +90,10 @@ body {
   transition: background-color 0.2s;
 }
 
+.btn-change {
+  max-width: 150px;
+}
+
 .btn-add:hover {
   background-color: #2980b9;
 }

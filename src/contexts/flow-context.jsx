@@ -2,91 +2,78 @@ import { createContext, useMemo, useReducer } from "react";
 import { dataFlow } from "../data/mockDataFlow";
 
 export const FlowContext = createContext({
-    // Estado inicial
+    //flow
     nodes: [],
     edges: [],
     selectedNode: undefined,
+    //view
     direction: 'LR',
     edgeType: 'default',
+    //dnd
     typeComponent: null,
 
 
-    // Ações
+    //actions=>flow
     setNodes: (nodes) => { },
     setEdges: (edges) => { },
     setSelectedNode: (node) => { },
-    setEdgeType: (edgeType) => { },
     updateNode: (node) => { },
     deleteNode: (nodeId) => { },
     applyLayout: (nodes, edges, direction) => { },
+    //actions=>view
+    setDirection: (direction) => { },
+    setEdgeType: (edgeType) => { },
+    //actions=>dnd
     setTypeComponent: (type) => { },
-    setDirection: (direction) => { }
 });
 
 
-const initialState = dataFlow
+//const initialState = dataFlow
 
-// const initialState = {
-//     flowName: "flowName",
-//     direction: "TB",
-//     selectedNode: undefined,
-//     typeComponent: null,
-//     nodes: [],
-//     edges: []
-// };
+const initialState = {
+    flowName: 'flowName',
+    direction: 'LR',
+    edgeType: 'default',
+    selectedNode: undefined,
+    typeComponent: null,
+    nodes: [],
+    edges: []
+};
 
 export default function FlowContextProvider({ children }) {
 
     const [state, dispatch] = useReducer(flowReducer, initialState);
 
-    const setNodes = (nodes) => dispatch({ type: ActionTypes.SET_NODES, payload: nodes });
-    const setEdges = (edges) => dispatch({ type: ActionTypes.SET_EDGES, payload: edges });
-    const setSelectedNode = (node) => dispatch({ type: ActionTypes.SET_SELECTED_NODE, payload: node });
-    const setEdgeType = (edgeType) => dispatch({ type: ActionTypes.SET_EDGE_TYPE, payload: edgeType });
-    const updateNode = (node) => dispatch({ type: ActionTypes.UPDATE_NODE, payload: node });
-    const deleteNode = (nodeId) => dispatch({ type: ActionTypes.DELETE_NODE, payload: nodeId });
-    const applyLayout = (nodes, edges, direction) => dispatch({ type: ActionTypes.LAYOUT_CHANGE, payload: { nodes, edges, direction } });
-    const setTypeComponent = (type) => dispatch({ type: ActionTypes.SET_TYPE_COMPONENT, payload: type });
-    const setDirection = (direction) => dispatch({ type: ActionTypes.SET_DIRECTION, payload: direction });
+    const actions = useMemo(() => ({
+        setNodes: (nodes) => dispatch({ type: ActionTypes.SET_NODES, payload: nodes }),
+        setEdges: (edges) => dispatch({ type: ActionTypes.SET_EDGES, payload: edges }),
+        setSelectedNode: (node) => dispatch({ type: ActionTypes.SET_SELECTED_NODE, payload: node }),
+        setEdgeType: (edgeType) => dispatch({ type: ActionTypes.SET_EDGE_TYPE, payload: edgeType }),
+        updateNode: (node) => dispatch({ type: ActionTypes.UPDATE_NODE, payload: node }),
+        deleteNode: (nodeId) => dispatch({ type: ActionTypes.DELETE_NODE, payload: nodeId }),
+        applyLayout: (nodes, edges, direction) => dispatch({ type: ActionTypes.LAYOUT_CHANGE, payload: { nodes, edges, direction } }),
+        setTypeComponent: (type) => dispatch({ type: ActionTypes.SET_TYPE_COMPONENT, payload: type }),
+        setDirection: (direction) => dispatch({ type: ActionTypes.SET_DIRECTION, payload: direction }),
+    }), []);
 
     const value = useMemo(() => ({
 
         nodes: state.nodes,
         edges: state.edges,
-        edgeType: state.edges?.length > 0 ? state.edges[0].type : 'default',
+        edgeType: state.edgeType,
         selectedNode: state.selectedNode,
         direction: state.direction,
         typeComponent: state.typeComponent,
 
-        setNodes,
-        setEdges,
-        setSelectedNode,
-        setEdgeType,
-        updateNode,
-        deleteNode,
-        applyLayout,
-        setTypeComponent,
-        setDirection
+        ...actions
     }), [
         state.nodes,
         state.edges,
         state.edgeType,
         state.selectedNode,
         state.direction,
-        state.typeComponent,
-
-        setNodes,
-        setEdges,
-        setSelectedNode,
-        setEdgeType,
-        updateNode,
-        deleteNode,
-        applyLayout,
-        setTypeComponent,
-        setDirection
+        state.typeComponent
     ]);
-
-
 
     return (
         <FlowContext.Provider value={value}>
@@ -152,7 +139,7 @@ function flowReducer(state, action) {
                 typeComponent: action.payload
             }
         default:
-            return state;
+            throw new Error(`Unknown action type: ${action.type}`);
     }
 }
 
