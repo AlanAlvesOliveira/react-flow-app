@@ -1,7 +1,9 @@
 export const dataFlow = {
     flowName: "flowName",
-    edgeDirection: "TB",
-    defaultNodes: [
+    direction: "LR",
+    selectedNode: undefined,
+    typeComponent: null,
+    nodes: [
         {
             "id": "0.6913249882677255",
             "position": {
@@ -183,7 +185,7 @@ export const dataFlow = {
             "dragging": false
         }
     ],
-    defaultEdges: [
+    edges: [
         {
             "animated": true,
             "source": "0.7332383413146958",

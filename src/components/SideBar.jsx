@@ -1,24 +1,30 @@
 import { useReactFlow } from "@xyflow/react";
-import { useCallback } from "react";
-import { useDnD } from "./DnDContext";
+import { useCallback, useContext } from "react";
 import { createNewNode } from "../utils/nodeUtils";
+import { FlowContext } from "../contexts/flow-context";
+
 
 export default function SideBar() {
+
+
     const reactFlowInstance = useReactFlow();
-
-
-    const [_, setType] = useDnD();
+    const { direction, setTypeComponent } = useContext(FlowContext);
 
     const onDragStart = (event, nodeType) => {
 
-        setType(nodeType);
+        setTypeComponent(nodeType);
+
         event.dataTransfer.setData('text/plain', nodeType);
         event.dataTransfer.effectAllowed = 'move';
     };
 
+    const onDragEnd = () => {
+        setTypeComponent(null); // Resetar ao soltar
+    };
+
     const onClick = useCallback((type) => {
 
-        const newNode = createNewNode(type);
+        const newNode = createNewNode(type, null, direction);
         reactFlowInstance.addNodes(newNode);
     }, [reactFlowInstance]);
 

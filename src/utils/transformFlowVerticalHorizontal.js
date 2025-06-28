@@ -9,6 +9,7 @@ const nodeHeight = 36;
 
 export const getLayoutedElements = (nodes, edges, direction = 'TB') => {
     const isHorizontal = direction === 'LR';
+
     dagreGraph.setGraph({ rankdir: direction, ranksep: 200 });
 
     nodes.forEach((node) => {

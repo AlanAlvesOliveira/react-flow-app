@@ -1,4 +1,12 @@
-export const createNewNode = (type, position) => {
+
+
+export const createNewNode = (type, position, direction) => {
+
+    const isHorizontal = direction === 'LR';
+
+    //LR => Horizontal
+    //TB => Vertical
+
     const id = `${Math.random()}`;
 
     // Objeto base do nó
@@ -11,7 +19,9 @@ export const createNewNode = (type, position) => {
         type,
         data: {
             label: `${type} node`
-        }
+        },
+        targetPosition: isHorizontal ? 'left' : 'top',
+        sourcePosition: isHorizontal ? 'right' : 'bottom',
     };
 
     // Adiciona dragHandle apenas para customNode
@@ -23,10 +33,4 @@ export const createNewNode = (type, position) => {
     }
 
     return baseNode;
-};
-
-export const addNodeToFlow = (type, reactFlowInstance, position = null) => {
-    const newNode = createNewNode(type, position, reactFlowInstance);
-    reactFlowInstance.addNodes(newNode);
-    return newNode; // Retorna o nó criado caso precise usá-lo
 };

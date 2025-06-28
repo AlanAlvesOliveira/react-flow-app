@@ -1,5 +1,6 @@
 import { Handle } from "@xyflow/react";
-import { useCallback, useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
+
 
 export default function CustomNode({ id, data, selected, targetPosition, sourcePosition }) {
     const [label, setLabel] = useState(data.label || 'Novo Nó');
