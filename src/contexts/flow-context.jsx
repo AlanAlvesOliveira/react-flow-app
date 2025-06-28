@@ -1,5 +1,5 @@
-import { act, captureOwnerStack, createContext, useMemo, useReducer } from "react";
-import { dataFlow } from "../nodes/dataFlow";
+import { createContext, useMemo, useReducer } from "react";
+import { dataFlow } from "../data/mockDataFlow";
 
 export const FlowContext = createContext({
     // Estado inicial
@@ -23,7 +23,17 @@ export const FlowContext = createContext({
     setDirection: (direction) => { }
 });
 
-const initialState = dataFlow;
+
+const initialState = dataFlow
+
+// const initialState = {
+//     flowName: "flowName",
+//     direction: "TB",
+//     selectedNode: undefined,
+//     typeComponent: null,
+//     nodes: [],
+//     edges: []
+// };
 
 export default function FlowContextProvider({ children }) {
 
