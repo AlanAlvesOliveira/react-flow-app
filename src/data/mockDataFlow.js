@@ -3,6 +3,7 @@ export const dataFlow = {
     direction: "LR",
     selectedNode: undefined,
     typeComponent: null,
+    edgeType: 'smoothstep',
     nodes: [
         {
             "id": "0.6913249882677255",

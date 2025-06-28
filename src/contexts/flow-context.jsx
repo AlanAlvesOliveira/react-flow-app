@@ -28,17 +28,17 @@ export const FlowContext = createContext({
 });
 
 
-//const initialState = dataFlow
+const initialState = dataFlow
 
-const initialState = {
-    flowName: 'flowName',
-    direction: 'LR',
-    edgeType: 'default',
-    selectedNode: undefined,
-    typeComponent: null,
-    nodes: [],
-    edges: []
-};
+// const initialState = {
+//     flowName: 'flowName',
+//     direction: 'LR',
+//     edgeType: 'default',
+//     selectedNode: undefined,
+//     typeComponent: null,
+//     nodes: [],
+//     edges: []
+// };
 
 export default function FlowContextProvider({ children }) {
 
