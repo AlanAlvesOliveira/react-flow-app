@@ -2,7 +2,8 @@ import { Handle } from "@xyflow/react";
 import { useState, useEffect } from "react";
 
 
-export default function CustomNode({ id, data, selected, targetPosition, sourcePosition }) {
+export default function EndtNode({ id, data, selected, targetPosition, sourcePosition }) {
+
     const [label, setLabel] = useState(data.label || 'Novo Nó');
 
     // Atualiza o label quando os dados externos mudam
@@ -15,7 +16,7 @@ export default function CustomNode({ id, data, selected, targetPosition, sourceP
 
 
     return (
-        <div className={`custom-node ${selected ? 'selected' : ''}`}                    >
+        <div className={`custom-node ${selected ? 'selected' : ''}`} style={{ background: '#e7eaed' }}>
             <div className="node-content">
                 <div
                     className="node-label"
@@ -32,9 +33,7 @@ export default function CustomNode({ id, data, selected, targetPosition, sourceP
                     </span>
                 </div>
             </div>
-
             <Handle type="target" position={targetPosition || 'left'} className="node-handle" />
-            <Handle type="source" position={sourcePosition || 'right'} className="node-handle" />
         </div>
     );
 }

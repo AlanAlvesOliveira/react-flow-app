@@ -166,6 +166,7 @@ body {
 }
 
 
+
 .node-details {
   position: fixed;
   right: 0;
@@ -177,10 +178,16 @@ body {
   padding: 20px;
   overflow-y: auto;
   z-index: 1000;
-
-  animation: slide-in-from-right 0.3s ease-out forwards;
 }
 
+
+.slide-in {
+  animation: slide-in-from-right 0.2s ease-out forwards;
+}
+
+.slide-out {
+  animation: slide-out-to-right 0.2s ease-out forwards;
+}
 
 
 @keyframes slide-in-from-right {
@@ -193,6 +200,36 @@ body {
     transform: translateX(0);
     opacity: 1;
   }
+}
+
+@keyframes slide-out-to-right {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+
+.node-details-edge-input {
+  background: rgb(231, 234, 237);
+  padding: 1em;
+  border-radius: 8px;
+
+}
+
+.node-details input:focus {
+  outline: 2px solid transparent !important;
+  outline-offset: 2px;
+  border-bottom: 2px solid rgb(87, 83, 78);
+}
+
+.details-label-id {
+  font-family: monospace;
 }
 
 
@@ -208,7 +245,12 @@ body {
   margin-bottom: 15px;
 }
 
+.react-flow__edge-text {
+  font-size: 1em !important;
+}
+
 .form-group label {
+  padding: .5em;
   display: block;
   margin-bottom: 5px;
   font-weight: 500;
@@ -216,6 +258,13 @@ body {
 
 .form-group input {
   width: 100%;
+  /* Fallback para browsers modernos */
+  width: -moz-available;
+  /* Firefox */
+  width: -webkit-fill-available;
+  /* Chrome, Safari */
+  width: stretch;
+  /* Futuro padrão CSS */
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 4px;

@@ -111,7 +111,7 @@ function flowReducer(state, action) {
                 nodes: state.nodes.map(node =>
                     node.id === action.payload.id ? action.payload : node
                 ),
-                selectedNode: action.payload,
+                selectedNode: null,
             };
         case ActionTypes.DELETE_NODE:
             return {

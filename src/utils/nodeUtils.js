@@ -18,14 +18,14 @@ export const createNewNode = (type, position, direction) => {
         },
         type,
         data: {
-            label: `${type} node`
+            label: `${type}`
         },
         targetPosition: isHorizontal ? 'left' : 'top',
         sourcePosition: isHorizontal ? 'right' : 'bottom',
     };
 
     // Adiciona dragHandle apenas para customNode
-    if (type === 'customNode') {
+    if (type === 'CustomNode' || type === 'EndNode' || type === 'StartNode') {
         return {
             ...baseNode,
             dragHandle: '.drag-handle__custom'

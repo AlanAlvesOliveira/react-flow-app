@@ -12,7 +12,7 @@ import {
     MarkerType,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
-import TextUpdaterNode from './TextUpdaterNode';
+
 import SideBar from './SideBar';
 import DevTools from './Devtools';
 import NodeDetails from './NodeDetails';
@@ -20,12 +20,15 @@ import CustomNode from './CustomNode';
 import { createNewNode } from '../utils/nodeUtils';
 import { FlowContext } from '../contexts/flow-context'; // Importe o contexto
 import { getLayoutedElements } from '../utils/transformFlowVerticalHorizontal';
+import StartNode from './CustomNodes/StartNode';
+import EndtNode from './CustomNodes/EndNode';
 
 const SUPPORTED_EDGE_TYPES = ['default', 'smoothstep', 'straight'];
 
 const nodeTypes = {
-    textUpdater: TextUpdaterNode,
-    customNode: CustomNode
+    CustomNode: CustomNode,
+    StartNode: StartNode,
+    EndNode: EndtNode
 };
 
 export default function Flow() {
@@ -51,18 +54,16 @@ export default function Flow() {
 
     const { screenToFlowPosition } = useReactFlow();
 
-    const onNodesChange = useCallback(
-        (changes) => setNodes(applyNodeChanges(changes, nodes)),
-        [nodes, setNodes]
-    );
+    const onNodesChange = useCallback((changes) => {
+        setNodes(applyNodeChanges(changes, nodes))
+    }, [nodes, setNodes]);
 
-    const onEdgesChange = useCallback(
-        (changes) => setEdges(applyEdgeChanges(changes, edges)),
-        [edges, setEdges]
-    );
+    const onEdgesChange = useCallback((changes) => {
+        setEdges(applyEdgeChanges(changes, edges))
+    }, [edges, setEdges]);
 
-    const onConnect = useCallback(
-        (params) => setEdges(addEdge({
+    const onConnect = useCallback((params) => {
+        setEdges(addEdge({
             ...params,
             type: edgeType,
             markerEnd: {
@@ -70,31 +71,27 @@ export default function Flow() {
                 width: 30,
                 height: 30,
             },
-        }, edges)),
-        [edgeType, edges, setEdges]
-    );
+        }, edges))
+    }, [edgeType, edges, setEdges]);
 
     const onDragOver = useCallback((event) => {
         event.preventDefault();
         event.dataTransfer.dropEffect = 'move';
     }, []);
 
-    const onDrop = useCallback(
-        (event) => {
-            event.preventDefault();
+    const onDrop = useCallback((event) => {
+        event.preventDefault();
 
-            if (!typeComponent) return;
+        if (!typeComponent) return;
 
-            const position = screenToFlowPosition({
-                x: event.clientX,
-                y: event.clientY,
-            });
+        const position = screenToFlowPosition({
+            x: event.clientX,
+            y: event.clientY,
+        });
 
-            const newNode = createNewNode(typeComponent, position, direction);
-            setNodes([...nodes, newNode]);
-        },
-        [screenToFlowPosition, typeComponent, nodes, setNodes]
-    );
+        const newNode = createNewNode(typeComponent, position, direction);
+        setNodes([...nodes, newNode]);
+    }, [screenToFlowPosition, typeComponent, nodes, setNodes]);
 
     const onNodeClick = useCallback((event, node) => {
         setSelectedNode(node);
@@ -178,13 +175,8 @@ export default function Flow() {
                 </Panel>
             </ReactFlow>
 
-            {selectedNode &&
-                <NodeDetails
-                    selectedNode={selectedNode}
-                    onUpdateNode={updateNode}
-                    onDeleteNode={onDeleteNode}
-                />
-            }
+            <NodeDetails />
+
         </div>
     );
 }

@@ -11,9 +11,9 @@ export const dataFlow = {
                 "x": 372,
                 "y": 86
             },
-            "type": "customNode",
+            "type": "CustomNode",
             "data": {
-                "label": "customNode node"
+                "label": "Custom Node"
             },
             "dragHandle": ".drag-handle__custom",
             "measured": {
@@ -31,9 +31,9 @@ export const dataFlow = {
                 "x": 372,
                 "y": 301
             },
-            "type": "customNode",
+            "type": "CustomNode",
             "data": {
-                "label": "customNode node"
+                "label": "Custom Node"
             },
             "dragHandle": ".drag-handle__custom",
             "measured": {
@@ -51,9 +51,9 @@ export const dataFlow = {
                 "x": 744,
                 "y": 86
             },
-            "type": "customNode",
+            "type": "CustomNode",
             "data": {
-                "label": "customNode node"
+                "label": "Custom Node"
             },
             "dragHandle": ".drag-handle__custom",
             "measured": {
@@ -71,7 +71,7 @@ export const dataFlow = {
                 "x": -14.322624058656231,
                 "y": 191.1289599022396
             },
-            "type": "customNode",
+            "type": "StartNode",
             "data": {
                 "label": "Start node"
             },
@@ -91,9 +91,9 @@ export const dataFlow = {
                 "x": 744,
                 "y": 0
             },
-            "type": "customNode",
+            "type": "CustomNode",
             "data": {
-                "label": "customNode node"
+                "label": "Custom Node"
             },
             "dragHandle": ".drag-handle__custom",
             "measured": {
@@ -111,9 +111,9 @@ export const dataFlow = {
                 "x": 744,
                 "y": 344
             },
-            "type": "customNode",
+            "type": "CustomNode",
             "data": {
-                "label": "customNode node"
+                "label": "Custom Node"
             },
             "dragHandle": ".drag-handle__custom",
             "measured": {
@@ -131,9 +131,9 @@ export const dataFlow = {
                 "x": 744,
                 "y": 258
             },
-            "type": "customNode",
+            "type": "CustomNode",
             "data": {
-                "label": "customNode node"
+                "label": "Custom Node"
             },
             "dragHandle": ".drag-handle__custom",
             "measured": {
@@ -151,9 +151,9 @@ export const dataFlow = {
                 "x": 744,
                 "y": 172
             },
-            "type": "customNode",
+            "type": "CustomNode",
             "data": {
-                "label": "customNode node"
+                "label": "Custom Node"
             },
             "dragHandle": ".drag-handle__custom",
             "measured": {
@@ -171,7 +171,7 @@ export const dataFlow = {
                 "x": 1345.1619849385,
                 "y": 172.9548416039104
             },
-            "type": "customNode",
+            "type": "EndNode",
             "data": {
                 "label": "End node"
             },
@@ -197,7 +197,8 @@ export const dataFlow = {
                 "type": "arrowclosed",
                 "width": 30,
                 "height": 30
-            }
+            },
+            "label": "exit 1"
         },
         {
             "animated": true,
@@ -209,7 +210,8 @@ export const dataFlow = {
                 "type": "arrowclosed",
                 "width": 30,
                 "height": 30
-            }
+            },
+            "label": ""
         },
         {
             "animated": true,
@@ -221,7 +223,8 @@ export const dataFlow = {
                 "type": "arrowclosed",
                 "width": 30,
                 "height": 30
-            }
+            },
+            "label": "exit 2"
         },
         {
             "animated": true,
@@ -233,7 +236,8 @@ export const dataFlow = {
                 "type": "arrowclosed",
                 "width": 30,
                 "height": 30
-            }
+            },
+            "label": "exit 3"
         },
         {
             "animated": true,
@@ -245,7 +249,8 @@ export const dataFlow = {
                 "type": "arrowclosed",
                 "width": 30,
                 "height": 30
-            }
+            },
+            "label": ""
         },
         {
             "animated": true,
@@ -257,7 +262,8 @@ export const dataFlow = {
                 "type": "arrowclosed",
                 "width": 30,
                 "height": 30
-            }
+            },
+            "label": ""
         },
         {
             "animated": true,
@@ -269,7 +275,8 @@ export const dataFlow = {
                 "type": "arrowclosed",
                 "width": 30,
                 "height": 30
-            }
+            },
+            "label": "exit 4"
         },
         {
             "animated": true,
@@ -281,7 +288,8 @@ export const dataFlow = {
                 "width": 30,
                 "height": 30
             },
-            "id": "xy-edge__0.27840725653522036-0.36118158845957415"
+            "id": "xy-edge__0.27840725653522036-0.36118158845957415",
+            "label": ""
         },
         {
             "animated": true,
@@ -293,7 +301,8 @@ export const dataFlow = {
                 "width": 30,
                 "height": 30
             },
-            "id": "xy-edge__0.3888778942262371-0.36118158845957415"
+            "id": "xy-edge__0.3888778942262371-0.36118158845957415",
+            "label": ""
         },
         {
             "animated": true,
@@ -305,7 +314,8 @@ export const dataFlow = {
                 "width": 30,
                 "height": 30
             },
-            "id": "xy-edge__0.4523590377899547-0.36118158845957415"
+            "id": "xy-edge__0.4523590377899547-0.36118158845957415",
+            "label": ""
         },
         {
             "animated": true,
@@ -317,7 +327,8 @@ export const dataFlow = {
                 "width": 30,
                 "height": 30
             },
-            "id": "xy-edge__0.7273818102118234-0.36118158845957415"
+            "id": "xy-edge__0.7273818102118234-0.36118158845957415",
+            "label": ""
         },
         {
             "animated": true,
@@ -329,8 +340,11 @@ export const dataFlow = {
                 "width": 30,
                 "height": 30
             },
-            "id": "xy-edge__0.36575859068552274-0.36118158845957415"
+            "id": "xy-edge__0.36575859068552274-0.36118158845957415",
+            "label": ""
         }
     ]
 
 }
+
+

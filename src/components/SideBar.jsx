@@ -32,7 +32,8 @@ export default function SideBar() {
         console.log(context);
     }
 
-    const nodeTypes = ['input', 'textUpdater', 'customNode', 'default', 'output'];
+    //const nodeTypes = ['input', 'textUpdater', 'customNode', 'default', 'output'];
+    const nodeTypes = ['StartNode', 'CustomNode', 'EndNode'];
 
     return (
 
@@ -50,7 +51,7 @@ export default function SideBar() {
                         onDragEnd={onDragEnd}
                         draggable
                     >
-                        {type.charAt(0).toUpperCase() + type.slice(1)} Node
+                        {type.replace('Node', ' Node')}
                     </button>
                 ))}
             </div>
