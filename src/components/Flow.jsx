@@ -14,7 +14,7 @@ import {
 import '@xyflow/react/dist/style.css';
 
 import SideBar from './SideBar';
-import DevTools from './Devtools';
+import DevTools from './Logs/Devtools';
 import NodeDetails from './NodeDetails';
 import { createNewNode } from '../utils/nodeUtils';
 import { FlowContext } from '../contexts/flow-context'; // Importe o contexto
