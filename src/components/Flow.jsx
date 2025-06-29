@@ -16,10 +16,10 @@ import '@xyflow/react/dist/style.css';
 import SideBar from './SideBar';
 import DevTools from './Devtools';
 import NodeDetails from './NodeDetails';
-import CustomNode from './CustomNode';
 import { createNewNode } from '../utils/nodeUtils';
 import { FlowContext } from '../contexts/flow-context'; // Importe o contexto
 import { getLayoutedElements } from '../utils/transformFlowVerticalHorizontal';
+import CustomNode from './CustomNodes/CustomNode';
 import StartNode from './CustomNodes/StartNode';
 import EndtNode from './CustomNodes/EndNode';
 

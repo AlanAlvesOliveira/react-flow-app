@@ -7,6 +7,7 @@ export default function NodeDetails() {
     const [edgeLabels, setEdgeLabels] = useState({});
     const [isVisible, setIsVisible] = useState(false);
     const [prevNode, setPrevNode] = useState(null);
+    const [startComponent, setStartComponent] = useState(false);
 
     // Filtra edges conectadas
     const edgesSelectedSource = edges.filter(x => x.source === selectedNode?.id);
@@ -15,6 +16,8 @@ export default function NodeDetails() {
     // Inicializa os labels das edges
     useEffect(() => {
         if (selectedNode) {
+            if (!startComponent) setStartComponent(true);
+
             if (prevNode && prevNode.id !== selectedNode.id) {
                 // Nó mudou - animação de troca
                 setIsVisible(false);
@@ -77,7 +80,8 @@ export default function NodeDetails() {
         }
     }, [selectedNode, nodeData, edges, edgeLabels, updateNode, setEdges]);
 
-    //if (!selectedNode) return null;
+    //o problema é essa linha, quando descomento a animação de saída é desligada
+    if (!startComponent) return null;
 
     return (
 
@@ -95,44 +99,8 @@ export default function NodeDetails() {
                 />
             </div>
 
-            {
-                edgesSelectedTarget.length > 0 && (
-                    <div className="form-group node-details-edge-input">
-                        <label>Edges Source:</label>
-                        {edgesSelectedTarget.map((edge) => (
-                            <div key={edge.id}>
-                                <label className='details-label-id'>{edge.source}:</label>
-                                <input
-                                    type="text"
-                                    value={edgeLabels[edge.id] || ''}
-                                    onChange={(e) => handleEdgeLabelChange(edge.id, e.target.value)}
-                                    placeholder="Label da edge"
-                                />
-                            </div>
-                        ))}
-                    </div>
-                )
-            }
-
-
-            {
-                edgesSelectedSource.length > 0 && (
-                    <div className="form-group node-details-edge-input">
-                        <label>Edges Target:</label>
-                        {edgesSelectedSource.map((edge) => (
-                            <div key={edge.id}>
-                                <label className='details-label-id'>{edge.target}:</label>
-                                <input
-                                    type="text"
-                                    value={edgeLabels[edge.id] || ''}
-                                    onChange={(e) => handleEdgeLabelChange(edge.id, e.target.value)}
-                                    placeholder="Label da edge"
-                                />
-                            </div>
-                        ))}
-                    </div>
-                )
-            }
+            {montaInputEdge(edgesSelectedTarget, "Edges Source", edgeLabels, handleEdgeLabelChange)}
+            {montaInputEdge(edgesSelectedSource, "Edges Target", edgeLabels, handleEdgeLabelChange)}
 
             <div style={{ display: 'flex', gap: '1em', justifyContent: 'center', marginTop: '16px' }}>
                 <button
@@ -149,5 +117,26 @@ export default function NodeDetails() {
                 </button>
             </div>
         </div >
+    );
+}
+
+function montaInputEdge(edgesList, label, edgeLabels, handleEdgeLabelChange) {
+    if (edgesList.length === 0) return null; // Retorna nada se não houver edges
+
+    return (
+        <div className="form-group node-details-edge-input">
+            <label>{label}</label>
+            {edgesList.map((edge) => (
+                <div key={edge.id}>
+                    <label className='details-label-id'>{edge.target}:</label>
+                    <input
+                        type="text"
+                        value={edgeLabels[edge.id] || ''}
+                        onChange={(e) => handleEdgeLabelChange(edge.id, e.target.value)}
+                        placeholder="Label da edge"
+                    />
+                </div>
+            ))}
+        </div>
     );
 }
